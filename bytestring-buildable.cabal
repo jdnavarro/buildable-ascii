@@ -1,0 +1,21 @@
+name:                bytestring-buildable
+version:             0.1
+synopsis:            Provides a Buildable type class to convert values to bytestrings
+-- description:         
+homepage:            https://github.com/jdnavarro/bytestring-buildable
+license:             BSD3
+license-file:        LICENSE
+author:              Danny Navarro
+maintainer:          j@dannynavarro.net
+category:            Data
+build-type:          Simple
+-- extra-source-files:  
+cabal-version:       >=1.10
+
+library
+  exposed-modules:     Data.ByteString.Buildable
+  -- other-modules:       
+  -- other-extensions:    
+  build-depends:       base >=4.7 && <5,
+                       bytestring
+  default-language:    Haskell2010
