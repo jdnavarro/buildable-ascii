@@ -1,15 +1,21 @@
 {-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE DefaultSignatures #-}
 {-# LANGUAGE FlexibleContexts #-}
-module Data.ByteString.Buildable where
+{-# LANGUAGE DefaultSignatures #-}
+module Data.ByteString.Buildable
+  ( Buildable(..)
+  , toByteString
+  , toLazyByteString
+  ) where
 
 import GHC.Generics (Generic, Rep, from)
 import Data.ByteString (ByteString)
+import Data.ByteString.Lazy (toStrict)
 import qualified Data.ByteString.Lazy as L (ByteString)
 import Data.ByteString.Builder
   ( Builder
   , byteString
   , lazyByteString
+  , toLazyByteString
   , charUtf8
   , string8
   , intDec
@@ -46,3 +52,7 @@ instance Buildable String where
 instance Buildable Int where
     build = intDec
     {-# INLINE build #-}
+
+
+toByteString :: Buildable a => a -> ByteString
+toByteString = toStrict . toLazyByteString . build
