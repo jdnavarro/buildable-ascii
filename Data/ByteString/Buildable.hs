@@ -42,6 +42,8 @@ import Data.ByteString.Builder
   , word32Dec
   , word64Dec
   , integerDec
+  , floatDec
+  , doubleDec
   )
 
 import Data.ByteString.Buildable.Generic
@@ -114,6 +116,14 @@ instance Buildable Word64 where
 
 instance Buildable Integer where
     build = integerDec
+    {-# INLINE build #-}
+
+instance Buildable Float where
+    build = floatDec
+    {-# INLINE build #-}
+
+instance Buildable Double where
+    build = doubleDec
     {-# INLINE build #-}
 
 
