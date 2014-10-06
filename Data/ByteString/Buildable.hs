@@ -21,6 +21,7 @@ import Data.Word
   , Word32
   , Word64
   )
+import Data.Monoid (mempty)
 import Data.ByteString (ByteString)
 import Data.ByteString.Lazy (toStrict)
 import qualified Data.ByteString.Lazy as L (ByteString)
@@ -125,6 +126,10 @@ instance Buildable Float where
 instance Buildable Double where
     build = doubleDec
     {-# INLINE build #-}
+
+instance Buildable a => Buildable (Maybe a) where
+    build Nothing  = mempty
+    build (Just v) = build v
 
 
 toByteString :: Buildable a => a -> ByteString
