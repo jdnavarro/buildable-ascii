@@ -8,6 +8,19 @@ module Data.ByteString.Buildable
   ) where
 
 import GHC.Generics (Generic, Rep, from)
+import Data.Int
+  ( Int8
+  , Int16
+  , Int32
+  , Int64
+  )
+import Data.Word
+  ( Word
+  , Word8
+  , Word16
+  , Word32
+  , Word64
+  )
 import Data.ByteString (ByteString)
 import Data.ByteString.Lazy (toStrict)
 import qualified Data.ByteString.Lazy as L (ByteString)
@@ -19,6 +32,16 @@ import Data.ByteString.Builder
   , charUtf8
   , string8
   , intDec
+  , int8Dec
+  , int16Dec
+  , int32Dec
+  , int64Dec
+  , wordDec
+  , word8Dec
+  , word16Dec
+  , word32Dec
+  , word64Dec
+  , integerDec
   )
 
 import Data.ByteString.Buildable.Generic
@@ -51,6 +74,46 @@ instance Buildable String where
 
 instance Buildable Int where
     build = intDec
+    {-# INLINE build #-}
+
+instance Buildable Int8 where
+    build = int8Dec
+    {-# INLINE build #-}
+
+instance Buildable Int16 where
+    build = int16Dec
+    {-# INLINE build #-}
+
+instance Buildable Int32 where
+    build = int32Dec
+    {-# INLINE build #-}
+
+instance Buildable Int64 where
+    build = int64Dec
+    {-# INLINE build #-}
+
+instance Buildable Word where
+    build = wordDec
+    {-# INLINE build #-}
+
+instance Buildable Word8 where
+    build = word8Dec
+    {-# INLINE build #-}
+
+instance Buildable Word16 where
+    build = word16Dec
+    {-# INLINE build #-}
+
+instance Buildable Word32 where
+    build = word32Dec
+    {-# INLINE build #-}
+
+instance Buildable Word64 where
+    build = word64Dec
+    {-# INLINE build #-}
+
+instance Buildable Integer where
+    build = integerDec
     {-# INLINE build #-}
 
 
