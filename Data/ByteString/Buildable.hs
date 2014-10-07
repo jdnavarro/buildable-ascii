@@ -28,8 +28,8 @@ import Data.ByteString.Builder
   , byteString
   , lazyByteString
   , toLazyByteString
-  , charUtf8
-  , string8
+  , char7
+  , string7
   , intDec
   , int8Dec
   , int16Dec
@@ -61,11 +61,11 @@ instance Buildable L.ByteString where
     {-# INLINE build #-}
 
 instance Buildable Char where
-    build = charUtf8
+    build = char7
     {-# INLINE build #-}
 
 instance Buildable String where
-    build = string8
+    build = string7
     {-# INLINE build #-}
 
 instance Buildable Int where
