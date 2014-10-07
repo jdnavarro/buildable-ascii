@@ -1,13 +1,11 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE FlexibleContexts #-}
-{-# LANGUAGE DefaultSignatures #-}
 module Data.ByteString.Buildable
   ( Buildable(..)
   , toByteString
   , toLazyByteString
   ) where
 
-import GHC.Generics (Generic, Rep, from)
 import Data.Int
   ( Int8
   , Int16
@@ -47,13 +45,8 @@ import Data.ByteString.Builder
   , doubleDec
   )
 
-import Data.ByteString.Buildable.Generic
-
 class Buildable a where
     build :: a -> Builder
-
-    default build :: (Generic a, GBuildable (Rep a)) => a -> Builder
-    build a = gbuild $ from a
 
 instance Buildable Builder where
     build = id
