@@ -1,5 +1,3 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE FlexibleContexts #-}
 module Data.ByteString.Buildable
   ( Buildable(..)
   , toByteString
@@ -28,8 +26,6 @@ import Data.ByteString.Builder
   , byteString
   , lazyByteString
   , toLazyByteString
-  , char7
-  , string7
   , intDec
   , int8Dec
   , int16Dec
@@ -58,14 +54,6 @@ instance Buildable ByteString where
 
 instance Buildable L.ByteString where
     build = lazyByteString
-    {-# INLINE build #-}
-
-instance Buildable Char where
-    build = char7
-    {-# INLINE build #-}
-
-instance Buildable String where
-    build = string7
     {-# INLINE build #-}
 
 instance Buildable Int where
