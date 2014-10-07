@@ -1,4 +1,4 @@
-name:          bytestring-buildable
+name:          buildable-ascii
 version:       0.1
 synopsis:      Default ASCII Builders
 description:
@@ -11,7 +11,7 @@ description:
     .
     To make builders with other encodings check the 'builder' functions in
     'bytestring' or 'buildable' packages.
-homepage:      https://github.com/jdnavarro/bytestring-buildable
+homepage:      https://github.com/jdnavarro/buildable-ascii
 license:       BSD3
 license-file:  LICENSE
 author:        Danny Navarro
@@ -22,10 +22,10 @@ cabal-version: >=1.10
 
 source-repository head
   type:     git
-  location: git://github.com/jdnavarro/bytestring-buildable
+  location: git://github.com/jdnavarro/buildable-ascii
 
 library
-  exposed-modules:   Data.ByteString.Buildable
+  exposed-modules:   Data.BuildableAscii
   build-depends:     base >=4.7 && <5,
                      bytestring >= 0.10.2.0
   default-language:  Haskell2010

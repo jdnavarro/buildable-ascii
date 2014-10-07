@@ -1,5 +1,5 @@
-module Data.ByteString.Buildable
-  ( Buildable(..)
+module Data.BuildableAscii
+  ( BuildableAscii(..)
   , toByteString
   , toLazyByteString
   ) where
@@ -41,77 +41,77 @@ import Data.ByteString.Builder
   , doubleDec
   )
 
-class Buildable a where
+class BuildableAscii a where
     build :: a -> Builder
 
-instance Buildable Builder where
+instance BuildableAscii Builder where
     build = id
     {-# INLINE build #-}
 
-instance Buildable ByteString where
+instance BuildableAscii ByteString where
     build = byteString
     {-# INLINE build #-}
 
-instance Buildable L.ByteString where
+instance BuildableAscii L.ByteString where
     build = lazyByteString
     {-# INLINE build #-}
 
-instance Buildable Int where
+instance BuildableAscii Int where
     build = intDec
     {-# INLINE build #-}
 
-instance Buildable Int8 where
+instance BuildableAscii Int8 where
     build = int8Dec
     {-# INLINE build #-}
 
-instance Buildable Int16 where
+instance BuildableAscii Int16 where
     build = int16Dec
     {-# INLINE build #-}
 
-instance Buildable Int32 where
+instance BuildableAscii Int32 where
     build = int32Dec
     {-# INLINE build #-}
 
-instance Buildable Int64 where
+instance BuildableAscii Int64 where
     build = int64Dec
     {-# INLINE build #-}
 
-instance Buildable Word where
+instance BuildableAscii Word where
     build = wordDec
     {-# INLINE build #-}
 
-instance Buildable Word8 where
+instance BuildableAscii Word8 where
     build = word8Dec
     {-# INLINE build #-}
 
-instance Buildable Word16 where
+instance BuildableAscii Word16 where
     build = word16Dec
     {-# INLINE build #-}
 
-instance Buildable Word32 where
+instance BuildableAscii Word32 where
     build = word32Dec
     {-# INLINE build #-}
 
-instance Buildable Word64 where
+instance BuildableAscii Word64 where
     build = word64Dec
     {-# INLINE build #-}
 
-instance Buildable Integer where
+instance BuildableAscii Integer where
     build = integerDec
     {-# INLINE build #-}
 
-instance Buildable Float where
+instance BuildableAscii Float where
     build = floatDec
     {-# INLINE build #-}
 
-instance Buildable Double where
+instance BuildableAscii Double where
     build = doubleDec
     {-# INLINE build #-}
 
-instance Buildable a => Buildable (Maybe a) where
+instance BuildableAscii a => BuildableAscii (Maybe a) where
     build Nothing  = mempty
     build (Just v) = build v
     {-# INLINE build #-}
 
-toByteString :: Buildable a => a -> ByteString
+toByteString :: BuildableAscii a => a -> ByteString
 toByteString = toStrict . toLazyByteString . build
