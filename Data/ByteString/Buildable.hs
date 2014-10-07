@@ -111,7 +111,7 @@ instance Buildable Double where
 instance Buildable a => Buildable (Maybe a) where
     build Nothing  = mempty
     build (Just v) = build v
-
+    {-# INLINE build #-}
 
 toByteString :: Buildable a => a -> ByteString
 toByteString = toStrict . toLazyByteString . build
