@@ -1,7 +1,5 @@
 module Data.BuildableAscii
   ( BuildableAscii(..)
-  , toByteString
-  , toLazyByteString
   ) where
 
 import Data.Int
@@ -19,13 +17,11 @@ import Data.Word
   )
 import Data.Monoid (mempty)
 import Data.ByteString (ByteString)
-import Data.ByteString.Lazy (toStrict)
 import qualified Data.ByteString.Lazy as L (ByteString)
 import Data.ByteString.Builder
   ( Builder
   , byteString
   , lazyByteString
-  , toLazyByteString
   , intDec
   , int8Dec
   , int16Dec
@@ -112,6 +108,3 @@ instance BuildableAscii a => BuildableAscii (Maybe a) where
     build Nothing  = mempty
     build (Just v) = build v
     {-# INLINE build #-}
-
-toByteString :: BuildableAscii a => a -> ByteString
-toByteString = toStrict . toLazyByteString . build
